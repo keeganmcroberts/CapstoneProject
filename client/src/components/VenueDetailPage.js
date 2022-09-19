@@ -41,9 +41,10 @@ function VenueDetailPage(){
        <div>
            <ul className="page-navbar">
             <li className="links"><a href="/">Home</a></li>
-            {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
             <li className="search-right"><input type="text" className="search" placeholder="Search by Band..."
                     onChange={(synthEvent)=> handleingtheSearch(synthEvent.target.value)}/></li>
+            <li className="search-right"><DatePicker  selected={startDate} onChange={(date) => setStartDate(date)} /></li>
+            <li className="search-right">Choose Date:</li>
           </ul>
         <div className="page-banner">
             <h2>{venueDetail.name}</h2>
@@ -58,9 +59,9 @@ function VenueDetailPage(){
             if(!startDate)
             return (
         <div className="city-cards">
-            <h3>{eachConcert.concert_band.name}</h3>
+            <h3 className="band-name">{eachConcert.concert_band.name}</h3>
             <h4>{eachConcert.concert_date.date} live @</h4>
-            <h3>{eachConcert.concert_venue.name}</h3>
+            <h3 className="venue-name">{eachConcert.concert_venue.name}</h3>
             <img src={eachConcert.concert_band.imaage_url}></img>  
             
             
@@ -69,9 +70,9 @@ function VenueDetailPage(){
             if (startDate && new Date(eachConcert.concert_date.date).getTime() === new Date(startDate).getTime())
             return (
                 <div className="city-cards">
-                    <h3>{eachConcert.concert_band.name}</h3>
+                    <h3 className="band-name">{eachConcert.concert_band.name}</h3>
                     <h4>{eachConcert.concert_date.date} live @</h4>
-                    <h3>{eachConcert.concert_venue.name}</h3>
+                    <h3 className="venue-name">{eachConcert.concert_venue.name}</h3>
                     <img src={eachConcert.concert_band.imaage_url}></img>  
                     
                     

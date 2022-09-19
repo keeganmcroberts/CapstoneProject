@@ -9,8 +9,6 @@ function VenueCard({eachVenue, setPersonalProfilePageVenues, personalProfilePage
     let navigate = useNavigate();
 
     function followAVenue(venue){
-        setFollowVenue(!followVenue)
-
         fetch(`/followVenue`,{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
@@ -46,7 +44,7 @@ function VenueCard({eachVenue, setPersonalProfilePageVenues, personalProfilePage
         <div className="city-cards">
         <h3>{eachVenue.name}</h3>
         <h4>{eachVenue.city.city}</h4>
-        {!followVenue ? <button onClick={()=>followAVenue(eachVenue)}>Follow</button> : <button className="unfollow-button" onClick={()=>unfollowVenue(eachVenue)}>Unfollow</button>}
+        {personalProfilePageVenues.some(venue => venue.venue.name === eachVenue.name) ? <button className="unfollow-button" onClick={()=>unfollowVenue(eachVenue.id)}>Following</button> : <button onClick={()=>followAVenue(eachVenue)}>Follow</button>}
         <img onClick={()=>viewConcerts(eachVenue.id)}src={eachVenue.image_url}></img>
     </div>
     )

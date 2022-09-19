@@ -4,6 +4,8 @@ class UserBandsController < ApplicationController
     def create
         
         find_user = User.find_by(id: session[:user_id])
+
+        if find_user 
                                     # session.user_id 
                                     # session.user_id = 4 
                                     # session[:user_id] = find_user 
@@ -26,15 +28,22 @@ class UserBandsController < ApplicationController
         # else
         #     render json: {error: new_user.errors.full_messages}
         # end
+        end
 
     end
 
 
+    def index
+        user_bands = UserBand.all.filter{ |eachUserBand| eachUserBand.user_id == session[:user_id]}
+        render json: user_bands
+    end
+
+
     def destroy
-        user_band_unfollowed = User.find_by!(id: params[:id])
+        user_band_unfollowed = UserBand.find_by!(id: params[:id])
         if user_band_unfollowed
             
-            user_profile_unfollowed.destroy
+            user_band_unfollowed.destroy
             
             head :no_content
         else
@@ -46,5 +55,9 @@ private
 
     def strong_params
         params.permit(:user_id, :band_id)
+    end
+
+    def item_not_found
+        render json: {error: "item not found"}
     end
 end

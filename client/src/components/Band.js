@@ -18,58 +18,62 @@ function Band({setPersonalProfilePageBands, personalProfilePageBands}){
     const [allBands, setAllBands] = useState([])
     const [bandSearchBar, setBandSearchBar] = useState([])
     const [followBand, setFollowBand] = useState(false)
-
-    function handleingtheSearch(thethingsItypeintotheSearchBar){
-        let resultofSearch= bandSearchBar.filter((whatItype)=> {
-          if(whatItype.name.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
-            return whatItype
-          }
-        })
-        setAllBands(resultofSearch)
     
-      }
-    let navigate = useNavigate();
-
-   
-
-   
-    function returnHome(){
-        navigate("/")
+    function handleingtheSearch(thethingsItypeintotheSearchBar){
+      let resultofSearch= bandSearchBar.filter((whatItype)=> {
+        if(whatItype.name.toLowerCase().includes(thethingsItypeintotheSearchBar.toLowerCase())){
+          return whatItype
+        }
+      })
+      setAllBands(resultofSearch)
+      
     }
-
+    let navigate = useNavigate();
+    
+    
+    
+    
+    function returnHome(){
+      navigate("/")
+    }
+    
     function followABand(){
       setFollowBand(!followBand)
     }
-
+    
+    const [genreState, setGenreState] = useState("Bands")
     return(
-        <div>
+      <div>
           <ul className="page-navbar">
             <li className="links"><a  href="/">Home</a></li>
             <li class="dropdown">
               <a href="javascript:void(0)" class="dropbtn">Genre</a>
               <div class="dropdown-content">
-                <a href="#">Folk</a>
-                <a href="#">Indie Pop</a>
-                <a href="#">Rock</a>
-                <a href="#">Indie Rock</a>
-                <a href="#">Blues Rock</a>
-                <a href="#">Hip Hop</a>
-                <a href="#">Punk</a>
+                <a onClick={()=>setGenreState("Bands")}>See All Bands</a>
+                <a onClick={()=>setGenreState("Folk")}>Folk</a>
+                <a onClick={()=>setGenreState("Indie Pop")}>Indie Pop</a>
+                <a onClick={()=>setGenreState("Rock")}>Rock</a>
+                <a onClick={()=>setGenreState("Indie Rock")}>Indie Rock</a>
+                <a onClick={()=>setGenreState("Blues Rock")}>Blues Rock</a>
+                <a onClick={()=>setGenreState("Hip Hop")}>Hip Hop</a>
+                <a onClick={()=>setGenreState("Punk")}>Punk</a>
               </div>
             </li>
             <li className="search-right"><input type="text" className="search" placeholder="Search by Band..."
                     onChange={(synthEvent)=> handleingtheSearch(synthEvent.target.value)}/></li>
           </ul>
           <div className="page-banner">
-            <h2>Bands</h2>
+            <h2>{genreState}</h2>
             
           </div>
 
+
           <div className="city-grid">
+            
             
              {allBands.map(eachBand=>{
                return (
-                <BandCard personalProfilePageBands={personalProfilePageBands} setPersonalProfilePageBands={setPersonalProfilePageBands} eachBand={eachBand}/>
+                <BandCard key={eachBand.id} genreState={genreState} personalProfilePageBands={personalProfilePageBands} setPersonalProfilePageBands={setPersonalProfilePageBands} eachBand={eachBand}/>
               
                 
                 )})}

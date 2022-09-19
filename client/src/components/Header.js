@@ -23,7 +23,7 @@ function Header({loggedInUser, setLoggedInUser}){
         .then (response=>{
             setLoggedInUser(null)
 
-            // navigate("/login")
+            navigate("/login")
         })
         alert("You've been Logged out")
         
@@ -34,10 +34,22 @@ function Header({loggedInUser, setLoggedInUser}){
         navigate("/personalProfile")
     }
 
+    function viewCities(){
+        navigate("/cities")
+    }
+
+    function viewVenues(){
+        navigate("/venues")
+    }
+
+    function viewBands(){
+        navigate("/bands")
+    }
+
     
     return(
         <div class="header">
-            <h1 className="header-text">🎶Concert Junkie🎶</h1>
+            <h1 className="header-text">🎶Concert Legend🎶</h1>
             <div class="hamburger-menu">
                     <input id="menu__toggle" type="checkbox" />
                     <label class="menu__btn" for="menu__toggle">
@@ -46,6 +58,9 @@ function Header({loggedInUser, setLoggedInUser}){
 
                     <ul class="menu__box">
                         <li><button onClick={returnHome} className="home-button">Home</button></li>
+                        <li><button onClick={viewCities} className="home-button">View Cities</button></li>
+                        <li><button onClick={viewVenues} className="home-button">View Venues</button></li>
+                        <li><button onClick={viewBands} className="home-button">View Bands</button></li>
                         <li><button onClick={viewProfile} className="navButton1" >Personal Profile</button></li>
                         {
                         loggedInUser
@@ -53,6 +68,7 @@ function Header({loggedInUser, setLoggedInUser}){
                         <li><button onClick={logoutUser} className="logoutLink">Logout</button></li>
                         : 
                         <li><button onClick={loginUser} className="logoutLink">Login</button></li>
+        
                     }
                         
                         

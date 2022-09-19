@@ -3,7 +3,13 @@
 }
 
 html {
-  background-color: #333
+  background-color: #333;
+  border-left: 3px solid #a6c7dd; 
+  border-right: 3px solid #a6c7dd;
+  border-top: 3px solid #a6c7dd;
+  border-radius: 10px;
+  outline: 5px rgb(132, 29, 29);
+  
 }
 
 .city-grid{
@@ -13,9 +19,17 @@ html {
 .row{
   display:flex;
   justify-content: center;
-  
+  grid-column-gap: 4rem;
   
 }
+
+.column{
+  box-shadow: 0 4px 8px 0 #f55c5c, 0 6px 20px 0 #ae3525;
+  color: #a6c7dd;
+  text-shadow: 1px 1px #e13715;
+}
+
+
 
 .home-image {
   width:  300px;
@@ -104,6 +118,7 @@ html {
   transition-duration: .25s;
   transition: .5s;
   z-index: 1;
+  opacity: .75;
   
 }
 .menu__item {
@@ -159,6 +174,7 @@ html {
 
   border: 3px solid #a6c7dd;
   margin-bottom: 1rem;
+  box-shadow: 0 4px 8px 0 #f55c5c, 0 6px 20px 0 #ae3525;
   
  
 }
@@ -170,7 +186,7 @@ html {
   width: 50%;
   margin-bottom: 1rem;
   justify-content: space-around;
-  grid-column-gap: 4rem;
+  grid-column-gap: 10rem;
   grid-row-gap: 4rem;
 
   
@@ -178,10 +194,17 @@ html {
   padding: 10px;
 }
 
+.header-text{
+  color: #a6c7dd;
+  text-shadow: 2px 2px #f55c5c;
+}
+
 .page-banner{
   text-align: center;
-  color: #a6c7dd;
+  color: #cdf032;
+  text-shadow: 1px 1px #a6c7dd;
   border: #a6c7dd;
+  
 }
 
 .app-form {
@@ -193,7 +216,7 @@ html {
   gap: 20px;
   height: 100vh;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  background-color: #f8f9fd;
+  background-color: #333;
 }
 
 input[type="text"],
@@ -226,7 +249,7 @@ input[type="submit"]:hover {
 .login-form {
   background-color: white;
   padding: 2rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(16, 203, 241, 0.842), 0 6px 20px 0 rgb(69, 84, 223);
 }
 
 .list-container {
@@ -255,7 +278,8 @@ input[type="submit"]:hover {
   margin: 0;
   padding: 0;
   background-color: #a6c7dd;
-  
+  box-shadow: 0 4px 8px 0 #f55c5c, 0 6px 20px 0 #ae3525;
+   
   overflow: hidden;
 }
 
@@ -283,17 +307,28 @@ input[type="submit"]:hover {
 }
 
 
+/* .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+} */
 
-li a, .dropbtn {
+/* li a, .dropbtn {
   display: inline-block;
   color: white;
   text-align: center;
   padding: 14px 16px;
-  text-decoration: none;
+  text-decoration: none
+} */
+
+.dropdown:hover .dropbtn {
+  background-color: rgb(197, 224, 108);
 }
 
-li a:hover, .dropdown:hover .dropbtn {
-  background-color: rgb(197, 224, 108);
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 li.dropdown {
@@ -305,26 +340,35 @@ li.dropdown {
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(220, 46, 46, 0.748);
   z-index: 1;
-
+  
 }
+.dropdown-content a:hover {background-color: rgb(197, 224, 108);}
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
 
-.dropdown-content a:hover {background-color: #f1f1f1;}
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
 
 
 .unfollow-button{
   background-color: #34bfe6;
+}
+
+.footer {
+  
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #a6c7dd;
+  color: rgb(7, 7, 7);
+  text-align: center;
+}
+
+
+.band-name{
+  color: rgb(166, 229, 8);
+}
+
+.venue-name{
+color:#ae3525
 }

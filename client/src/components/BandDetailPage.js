@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useNavigate } from 'react'
 import {useParams} from "react-router-dom";
 
-import DatePicker from "react-datepicker";
+import DatePicker from "react-datepicker"; 
 
 // import "react-datepicker/dist/react-datepicker.css";
 
@@ -16,22 +16,17 @@ function BandDetailPage(){
         })
     }, [])
 
+    // console.log("DATE:",(startDate))
+    
+    
+    
+    
     const [startDate, setStartDate] = useState(null);
-    console.log("DATE:",(startDate))
-    
-  
-    
-  
     const [bandDetail, setBandDetail] = useState({})
     const[bandSearchBar, setBandSearchBar] = useState("")
-    // let navigate = useNavigate();
+  
     const {id} = useParams();
-    console.log("bands detail:", bandDetail)
-    console.log("search bar band:", bandSearchBar)
-    // function viewConcerts(id){
-    //     navigate(`/bands/${id}`)
-    // }
-    // console.log("all the venues:", bandDetail.venues.length)
+    
 
 
     function handleingtheSearch(thethingsItypeintotheSearchBar){
@@ -51,9 +46,10 @@ function BandDetailPage(){
         <div>
         <ul className="page-navbar">
             <li className="links"><a href="/">Home</a></li>
-            {/* <li><DatePicker className="date-picker" selected={startDate} onChange={(date) => setStartDate(date)} /></li> */}
             <li className="search-right"><input type="text" className="search" placeholder="Search by Venue..."
                     onChange={(synthEvent)=> handleingtheSearch(synthEvent.target.value)}/></li>
+            <li className="search-right"><DatePicker  selected={startDate} onChange={(date) => setStartDate(date)} /></li>
+            <li className="search-right">Choose Date:</li>
           </ul>
         <div className="page-banner">
             <h2>{bandDetail.name}</h2>
@@ -62,14 +58,16 @@ function BandDetailPage(){
         </div>
             <div className="city-grid">
                 { bandDetail.band_concerts.map(eachConcert=>{
+                    console.log(eachConcert)
                 if(eachConcert.concert_venue.name.toLowerCase().includes(bandSearchBar.toLowerCase())
                 
                 ){ 
                 if(!startDate)
                 return (
             <div className="city-cards">
-                <h3>{eachConcert.concert_date.date} live @</h3>
-                <h3>{eachConcert.concert_venue.name}</h3>
+                <h4>{eachConcert.concert_date.date} live @</h4>
+                <h3 className="venue-name">{eachConcert.concert_venue.name}</h3>
+                <h4>{eachConcert.concert_city.city}</h4>
                 <img src={eachConcert.concert_venue.image_url}></img>
                 
                 
@@ -80,6 +78,7 @@ function BandDetailPage(){
                     <div className="city-cards">
                         <h3>{eachConcert.concert_date.date} live @</h3>
                         <h3>{eachConcert.concert_venue.name}</h3>
+                        <h4>{eachConcert.concert_city.city}</h4>
                         <img src={eachConcert.concert_venue.image_url}></img>
                         
                         

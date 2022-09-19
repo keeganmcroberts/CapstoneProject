@@ -48,7 +48,7 @@ function City(){
         <div className="city-grid">
             {allCities.map(eachCity=>{
                 return(
-                    <div className="city-cards">
+                    <div key={eachCity.id} className="city-cards">
                         <h2>{eachCity.city},</h2>
                         <h3>{eachCity.state}</h3>
                         <img onClick={()=>viewVenues(eachCity.id)}src={eachCity.image_url}></img>

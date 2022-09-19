@@ -10,7 +10,7 @@ import {useNavigate} from 'react-router';
 
 
 
-function HomePage(){
+function HomePage({loggedInUser}){
 
     let navigate = useNavigate();
     
@@ -26,13 +26,27 @@ function HomePage(){
         navigate("/bands")
     }
 
+    function viewProfile(){
+      navigate("/personalProfile")
+  }
+
 
     return(
         <div>
         <ul className="page-navbar">
             <li className="links"><a href="default.asp">Home</a></li>
+            {loggedInUser ?  <li className="search-right"><a href="/personalProfile">Profile</a></li> : null}
+            {loggedInUser ? null : <li className="search-right"><a href="/login">Login</a></li>}
           </ul>
+          <div className="page-banner">
+            <h2>Welcome!</h2>
+            
+          </div>
         <div class="row">
+            <div class="column">
+                <h4>Bands</h4>
+                <img onClick={viewBands}  className="home-image" src="https://media.gq.com/photos/5d5d51edf535760008d2cb5c/3:4/w_841,h_1122,c_limit/Bon-Iver-II-GQ-2019-082119.jpg" alt="bands"></img>
+            </div>
             <div class="column">
                 <h4>Cities</h4>     
                 <img onClick={viewCities} className="home-image" src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?ixlib=rb-1.2.1&w=1080&fit=max&q=80&fm=jpg&crop=entropy&cs=tinysrgb" alt="cities"></img>
@@ -40,10 +54,6 @@ function HomePage(){
             <div class="column">
                 <h4>Venues</h4>
                 <img onClick={viewVenues}  className="home-image" src="https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,h_900,q_65,w_640/v1/clients/denver/Red_Rocks_Concert_Credit_Colorado_eba595ac-bd15-4c2c-898e-38b325ee61a3.jpg" alt="venues"></img>
-            </div>
-            <div class="column">
-                <h4>Bands</h4>
-                <img onClick={viewBands}  className="home-image" src="https://media.gq.com/photos/5d5d51edf535760008d2cb5c/3:4/w_841,h_1122,c_limit/Bon-Iver-II-GQ-2019-082119.jpg" alt="bands"></img>
             </div>
         </div>
         </div>

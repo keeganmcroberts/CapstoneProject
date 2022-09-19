@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {useNavigate} from 'react-router';
 
 
-function BandCard({eachBand, setPersonalProfilePageBands, personalProfilePageBands}){
+function BandCard({genreState, eachBand, setPersonalProfilePageBands, personalProfilePageBands}){
     
     const [followBand, setFollowBand] = useState(false)
 
@@ -10,7 +10,7 @@ function BandCard({eachBand, setPersonalProfilePageBands, personalProfilePageBan
 
     function followABand(band){
         
-        setFollowBand(!followBand)
+        
         console.log("BAND:", band)
         
         fetch(`/followBand`,{
@@ -22,19 +22,19 @@ function BandCard({eachBand, setPersonalProfilePageBands, personalProfilePageBan
           .then(likedBand=>{
             setPersonalProfilePageBands([likedBand, ...personalProfilePageBands])
         })
-    }
-    function unFollowABand(band){
-        
-        setFollowBand(!followBand)
 
-        fetch(`/unfollowBand`,{
-            method:'DELETE',
-            headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify(band)
+    }
+   
+    function unFollowABand(id){
+    
+        fetch(`/unfollowBand/${id}`,{
+            method:'DELETE'
           })
-          .then(r => r.json())
-          .then(likedBand=>{
-              setPersonalProfilePageBands(likedBand)
+        
+          .then(()=>{
+            fetch("/user_bands")
+            .then(res => res.json())
+            .then(data => setPersonalProfilePageBands(data))    
           })
     }
 
@@ -47,12 +47,12 @@ function BandCard({eachBand, setPersonalProfilePageBands, personalProfilePageBan
     
 
 
-
+   if (genreState === eachBand.genre || genreState === "Bands")
     return(
         <div className="city-cards">
-            <h3>{eachBand.name}</h3>
+             <h3>{eachBand.name}</h3>
             {/* <h2>{eachBand.state}</h2> */}
-            {!followBand ? <button onClick={()=>followABand(eachBand)}>Follow</button> : <button className="unfollow-button" onClick={()=>unFollowABand(eachBand)}>Unfollow</button> }
+            {personalProfilePageBands.some(band => band.band.name === eachBand.name) ? <button className="unfollow-button" onClick={()=>unFollowABand(eachBand.id)}>Following</button> : <button onClick={()=>followABand(eachBand)}>Follow</button>}
             <img onClick={()=> viewConcerts(eachBand.id)} src={eachBand.imaage_url}></img>
         </div>
     )

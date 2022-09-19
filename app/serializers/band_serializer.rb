@@ -4,7 +4,7 @@ class BandSerializer < ActiveModel::Serializer
 
   def band_concerts
     self.object.concerts.map do |each_concert|
-      {"concert_date": each_concert.concert_date, "concert_venue": each_concert.venue, "concert_band": each_concert.band }
+      {"concert_date": each_concert.concert_date, "concert_venue": each_concert.venue, "concert_band": each_concert.band, "concert_city": each_concert.venue.city}
     end
   end
 

@@ -18,16 +18,6 @@ function Login({loggedInUser, setLoggedInUser}) {
     
 
 
-    useEffect(
-        ()=>{
-            fetch("/userInSession")
-            .then(r=> r.json())
-            .then( setLoggedInUser)
-        }
-        ,[]
-    )
-
-
 
     function onSubmit(e){
         e.preventDefault()

@@ -13,9 +13,10 @@ Rails.application.routes.draw do
   get "/userInSession", to: "session#get_user"
   delete "/logout", to: "session#destroy" 
   post "/followBand", to: "user_bands#create"
-  delete "/unfollowBand", to: "user_bands#destroy"
+  delete "/unfollowBand/:id", to: "user_bands#destroy"
   post "/followVenue", to: "user_venues#create"
-  delete "/unfollowVenue", to: "user_venues#destroy"
+  delete "/unfollowVenue/:id", to: "user_venues#destroy"
+  
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

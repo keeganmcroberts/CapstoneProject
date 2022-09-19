@@ -53,7 +53,7 @@ function Venue({setPersonalProfilePageVenues, personalProfilePageVenues}){
         <div className="city-grid">
             {allVenues.map(eachVenue=>{
                 return(
-                   <VenueCard personalProfilePageVenues={personalProfilePageVenues} setPersonalProfilePageVenues={setPersonalProfilePageVenues} eachVenue={eachVenue}/>
+                   <VenueCard key={eachVenue.id} personalProfilePageVenues={personalProfilePageVenues} setPersonalProfilePageVenues={setPersonalProfilePageVenues} eachVenue={eachVenue}/>
                 )})}
         </div>
         </div>
